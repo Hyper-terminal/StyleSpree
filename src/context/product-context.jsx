@@ -1,20 +1,40 @@
-import { createContext, useState } from "react";
+import React, {
+  createContext,
+  useCallback,
+  useEffect,
+  useReducer,
+} from "react";
+import productsData from "../constants/men-products.json";
+import productReducer from "./product-reducer";
 
-const PRODUCTS = {};
+export const ProductContext = createContext();
 
-const ProductContext = createContext({
-  products: [],
-});
+const initialState = {
+  products: productsData,
+  filteredProducts: productsData,
+  filters: {
+    price: [],
+    color: [],
+    brand: [],
+  },
+};
 
-const ProductProvider = ({ children }) => {
-  const [products, setProducts] = useState(PRODUCTS);
+export const ProductProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(productReducer, initialState);
+
+  const setProducts = useCallback(
+    (products) => dispatch({ type: "SET_PRODUCTS", products }),
+    []
+  );
+
+  const setFilter = useCallback((filter) => {
+    dispatch({ type: "FILTER_PRODUCTS", filter });
+    dispatch({ type: "UPDATE_PRODUCTS" });
+  }, []);
 
   return (
-    <ProductContext.Provider value={{ products }}>
+    <ProductContext.Provider value={{ ...state, setProducts, setFilter }}>
       {children}
     </ProductContext.Provider>
   );
 };
-
-export default ProductContext;
-export { ProductProvider };

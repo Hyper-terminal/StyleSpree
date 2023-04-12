@@ -6,11 +6,9 @@ import { ProductProvider } from "./context/product-context";
 import { CartProvider } from "./context/cart-context";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <ProductProvider>
-      <CartProvider>
-        <App />
-      </CartProvider>
-    </ProductProvider>
-  </React.StrictMode>
+  <ProductProvider>
+    <CartProvider>
+      <App />
+    </CartProvider>
+  </ProductProvider>
 );

@@ -1,6 +1,6 @@
 const cartReducer = (state, action) => {
   const { type } = action;
-  if (type === "ADD_CART_ITEM") {
+  if (action.type === "ADD_CART_ITEM") {
     const { productToAdd } = action;
     const existingCartItem = state.cartItems.find(
       (cartItem) => cartItem.id === productToAdd.id
@@ -48,3 +48,5 @@ const cartReducer = (state, action) => {
 
   return state;
 };
+
+export default cartReducer;

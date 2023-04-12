@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { AiOutlineHeart, AiOutlineSearch } from "react-icons/ai";
+import {
+  AiOutlineClose,
+  AiOutlineHeart,
+  AiOutlineSearch,
+} from "react-icons/ai";
 import { BiShoppingBag } from "react-icons/bi";
 import { RxHamburgerMenu } from "react-icons/rx";
 import classes from "./mobile-navbar.module.css";
-import { AiOutlineClose } from "react-icons/ai";
-import Searchbar from "../../components/search-bar/Searchbar";
 
 const MobileNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,9 +29,14 @@ const MobileNavbar = () => {
               <div>Men</div>
               <div>Women</div>
               <div>Kids</div>
+              <div style={{ marginTop: "20px" }}>
+                <AiOutlineHeart /> Wishlist
+              </div>
+              <div>
+                <BiShoppingBag />
+                Bag
+              </div>
             </nav>
-            <div>Wishlist</div>
-            <div>Bag</div>
           </div>
         )}
 
