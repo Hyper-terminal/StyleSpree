@@ -18,6 +18,7 @@
   column-gap: 10px;
   padding: 20px;
   border: 1px solid #d4d5d9;
+  min-height: 100vh;
 }
 
 .sorting {
@@ -30,7 +31,6 @@
 
 .sorting option {
   background-color: white;
-  color: red;
 }
 
 @media screen and (max-width: 1350px) {

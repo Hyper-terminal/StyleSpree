@@ -1,10 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import classes from "./product-card.module.css";
 import { AiOutlineHeart } from "react-icons/ai";
 
 const ProductCard = ({ product }) => {
   const brand_len = product.brand.length;
+  const navigate = useNavigate();
   return (
-    <div className={classes.container}>
+    <div
+      className={classes.container}
+      onClick={() => navigate(`/products/details/${product.productId}`)}
+    >
       <div className={classes.imageContainer}>
         <img
           style={{ height: "100%", width: "100%" }}

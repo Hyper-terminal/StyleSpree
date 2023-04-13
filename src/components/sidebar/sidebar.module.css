@@ -1,9 +1,12 @@
 .container {
   position: fixed;
   width: 250px;
+  height: auto;
+  overflow-y: auto;
+  top: 83px;
+  bottom: 0;
   z-index: 2;
   left: 0;
-  height: 100vh;
   background-color: white;
   border: 1px solid #d4d5d9;
   border-top: none;

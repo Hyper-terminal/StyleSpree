@@ -1,4 +1,4 @@
-[
+export const menProducts = [
   {
     "landingPageUrl": "Shirts/Dennis-Lingo/Dennis-Lingo-Men-Pink-Slim-Fit-Casual-Shirt/7488102/buy",
     "loyaltyPointsEnabled": false,

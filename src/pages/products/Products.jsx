@@ -1,10 +1,31 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ProductCard, Sidebar } from "../../components";
-import { ProductContext } from "../../context/product-context";
+import { ProductContext } from "../../context/products/product-context";
 import classes from "./products.module.css";
+import { useParams } from "react-router-dom";
+import {
+  menProducts,
+  childProducts,
+  womenProducts,
+} from "../../constants/products/";
 
 const Products = () => {
-  const { filteredProducts } = useContext(ProductContext);
+  const { filteredProducts, setSorting, setProducts } =
+    useContext(ProductContext);
+
+  const params = useParams();
+
+  useEffect(() => {
+    if (params.category === "men") setProducts(menProducts);
+    else if (params.category === "women") setProducts(womenProducts);
+    else if (params.category === "child") setProducts(childProducts);
+    else setProducts(womenProducts);
+  }, [params, setProducts]);
+
+  const handleSorting = (event) => {
+    const { value } = event.target;
+    setSorting(value);
+  };
 
   return (
     <div className={classes.productsPage}>
@@ -15,11 +36,12 @@ const Products = () => {
           <select
             className={classes.sorting}
             defaultValue="Sort by: Recommended"
+            onChange={handleSorting}
           >
-            <option value="recommended">Recommended</option>
-            <option value="popularity">Popularity</option>
-            <option value="">Price: High to Low</option>
-            <option value="">Price: Low to High</option>
+            <option value="">Recommended</option>
+            <option value="rating-decrease">Popularity</option>
+            <option value="price-decrease">Price: High to Low</option>
+            <option value="price-increase">Price: Low to High</option>
           </select>
         </label>
         <div className={classes.gridContainer}>

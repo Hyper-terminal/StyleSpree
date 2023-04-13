@@ -1,5 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
-import { ProductContext } from "../../context/product-context";
+import { ProductContext } from "../../context/products/product-context";
+import Card from "../UI/Card";
+import CheckBox from "../UI/CheckBox";
+import classes from "./filters.module.css";
+
+// define the price ranges
+const priceRanges = [
+  { min: 124, max: 4043 },
+  { min: 4043, max: 7962 },
+  { min: 7962, max: 11881 },
+  { min: 11881, max: 15800 },
+];
 
 const FilterByPrice = () => {
   const { setFilter } = useContext(ProductContext);
@@ -34,46 +45,23 @@ const FilterByPrice = () => {
     }
   }, [setFilter, selectedPrices]);
 
+
   return (
-    <div>
-      <h3>Filter by Price</h3>
-      <div>
-        <input
-          type="checkbox"
-          id="124-4043"
-          value="124-4043"
-          onChange={handlePriceChange}
-        />
-        <label htmlFor="124-4043">Rs. 124 to Rs. 4043</label>
-      </div>
-      <div>
-        <input
-          type="checkbox"
-          id="4043-7962"
-          value="4043-7962"
-          onChange={handlePriceChange}
-        />
-        <label htmlFor="4043-7962">Rs. 4043 to Rs. 7962</label>
-      </div>
-      <div>
-        <input
-          type="checkbox"
-          id="7962-11881"
-          value="7962-11881"
-          onChange={handlePriceChange}
-        />
-        <label htmlFor="7962-11881">Rs. 7962 to Rs. 11881</label>
-      </div>
-      <div>
-        <input
-          type="checkbox"
-          id="11881-15800"
-          value="11881-15800"
-          onChange={handlePriceChange}
-        />
-        <label htmlFor="11881-15800">Rs. 11881 to Rs. 15800</label>
-      </div>
-    </div>
+    <Card title="Filter by Price">
+      {priceRanges.map(({ min, max }) => (
+        <div className={classes.container} key={`${min}-${max}`}>
+          <CheckBox
+            id={`${min}-${max}`}
+            value={`${min}-${max}`}
+            onChange={handlePriceChange}
+          />
+
+          <label htmlFor={`${min}-${max}`}>
+            Rs. {min} to Rs. {max}
+          </label>
+        </div>
+      ))}
+    </Card>
   );
 };
 

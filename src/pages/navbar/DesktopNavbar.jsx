@@ -1,18 +1,24 @@
-import { CgProfile } from "react-icons/cg";
+import React from "react";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BiShoppingBag } from "react-icons/bi";
-import classes from "./desktop-navbar.module.css";
+import { CgProfile } from "react-icons/cg";
 import Searchbar from "../../components/search-bar/Searchbar";
+import { navbar_links } from "../../constants/navbar-links";
+import classes from "./desktop-navbar.module.css";
+import { useNavigate } from "react-router-dom";
 
 const DesktopNavbar = () => {
+  const navigate = useNavigate();
   return (
     <header className={classes.container}>
       <div className={classes.left_container}>
         <h2>StyleSpree</h2>
         <nav className={classes.link}>
-          <div>Men</div>
-          <div>Women</div>
-          <div>Kids</div>
+          {navbar_links.map((item) => (
+            <div key={item} onClick={() => navigate("/products/" + item)}>
+              {item}
+            </div>
+          ))}
         </nav>
         <Searchbar />
       </div>
@@ -37,4 +43,4 @@ const DesktopNavbar = () => {
   );
 };
 
-export default DesktopNavbar;
+export default React.memo(DesktopNavbar);
