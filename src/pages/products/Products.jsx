@@ -31,19 +31,16 @@ const Products = () => {
     <div className={classes.productsPage}>
       <Sidebar />
       <main className={classes.main}>
-        <label htmlFor="">
-          Sort By:
-          <select
-            className={classes.sorting}
-            defaultValue="Sort by: Recommended"
-            onChange={handleSorting}
-          >
-            <option value="">Recommended</option>
-            <option value="rating-decrease">Popularity</option>
-            <option value="price-decrease">Price: High to Low</option>
-            <option value="price-increase">Price: Low to High</option>
-          </select>
-        </label>
+        <select
+          className={classes.sorting}
+          defaultValue="Sort by: Recommended"
+          onChange={handleSorting}
+        >
+          <option value="">Recommended</option>
+          <option value="rating-decrease">Popularity</option>
+          <option value="price-decrease">Price: High to Low</option>
+          <option value="price-increase">Price: Low to High</option>
+        </select>
         <div className={classes.gridContainer}>
           {filteredProducts.length === 0 && <h3>No Products !</h3>}
           {filteredProducts?.map((product) => (

@@ -6,11 +6,15 @@ import {
 } from "react-icons/ai";
 import { BiShoppingBag } from "react-icons/bi";
 import { RxHamburgerMenu } from "react-icons/rx";
+import { useNavigate } from "react-router-dom";
+import { navbar_links } from "../../constants/navbar-links";
 import classes from "./mobile-navbar.module.css";
 
 const MobileNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const navigate = useNavigate();
+
   return (
     <>
       <header className={classes.container}>
@@ -26,9 +30,17 @@ const MobileNavbar = () => {
               onClick={() => setIsOpen(false)}
             />
             <nav className={classes.link}>
-              <div>Men</div>
-              <div>Women</div>
-              <div>Kids</div>
+              {navbar_links.map((item) => (
+                <div
+                  key={item}
+                  onClick={() => {
+                    navigate("/products/" + item);
+                    setIsOpen(false);
+                  }}
+                >
+                  {item.toUpperCase()}
+                </div>
+              ))}
               <div style={{ marginTop: "20px" }}>
                 <AiOutlineHeart /> Wishlist
               </div>

@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  flex-wrap: wrap;
+  gap: 50px;
+  overflow: hidden;
+}
+
+.container img {
+  max-height: 500px;
+  max-width: 100%;
+  transition: all 0.27s linear;
+  cursor: pointer;
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+  object-fit: contain;
+}
+
+.container img:hover {
+  transform: scale(1.03);
+}

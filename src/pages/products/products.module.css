@@ -4,6 +4,12 @@
   overflow-x: hidden;
   padding-top: 84px;
 }
+ 
+@media screen and (max-width: 770px) {
+  .productsPage {
+    padding-top: 0;
+  }
+}
 
 .main {
   margin-left: 250px;
@@ -27,6 +33,7 @@
   padding: 1rem;
   background-color: white;
   font-size: 16px;
+  margin: 2rem;
 }
 
 .sorting option {

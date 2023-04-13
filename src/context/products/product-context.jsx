@@ -1,5 +1,4 @@
 import React, { createContext, useCallback, useMemo, useReducer } from "react";
-import { menProducts } from "../../constants/products/men";
 import productReducer from "./product-reducer";
 import {
   filterProductsByBrands,

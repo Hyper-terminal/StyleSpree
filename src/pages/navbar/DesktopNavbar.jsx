@@ -16,7 +16,7 @@ const DesktopNavbar = () => {
         <nav className={classes.link}>
           {navbar_links.map((item) => (
             <div key={item} onClick={() => navigate("/products/" + item)}>
-              {item}
+              {item.toUpperCase()}
             </div>
           ))}
         </nav>
