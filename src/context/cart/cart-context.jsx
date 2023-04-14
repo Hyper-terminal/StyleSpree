@@ -3,58 +3,49 @@ import cartReducer from "./cart-reducer";
 
 export const CartContext = createContext({
   isCartOpen: false,
-  setIsCartOpen: () => {},
+  cartShownHandler: () => {},
   cartItems: [],
   addItemToCart: () => {},
-  removeItemFromCart: () => {},
   clearItemFromCart: () => {},
-  cartCount: 0,
-  cartTotal: 0,
 });
 
 export const CartProvider = ({ children }) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [cartCount, setCartCount] = useState(0);
   const [cartTotal, setCartTotal] = useState(0);
+  const [cartCount, setCartCount] = useState(0);
   const [cart, dispatch] = useReducer(cartReducer, {
     cartItems: [],
   });
 
-  // useEffect(() => {
-  //   if (cart?.cartItems?.length > 0) {
-  //     const newCartCount = cart.cartItems.reduce(
-  //       (total, cartItem) => total + cartItem.quantity,
-  //       0
-  //     );
-  //     setCartCount(newCartCount);
-  //   }
-  // }, [cart]);
+  useEffect(() => {
+    let total = 0;
+    let count = 0;
 
-  // useEffect(() => {
-  //   const newCartTotal = cart.cartItems.reduce(
-  //     (total, cartItem) => total + cartItem.quantity * cartItem.price,
-  //     0
-  //   );
-  //   setCartTotal(newCartTotal);
-  // }, [cart]);
+    cart?.cartItems?.forEach((cartItem) => {
+      total += Number(cartItem.price) * Number(cartItem.quantity);
+      count += Number(cartItem.quantity);
+    });
+
+    setCartCount(count);
+    setCartTotal(total);
+  }, [cart]);
 
   const addItemToCart = (productToAdd) => {
     dispatch({ type: "ADD_CART_ITEM", productToAdd });
-  };
-
-  const removeItemToCart = (cartItemToRemove) => {
-    dispatch({ type: "REMOVE_CART_ITEM", cartItemToRemove });
   };
 
   const clearItemFromCart = (cartItemToClear) => {
     dispatch({ type: "CLEAR_CART_ITEMS", cartItemToClear });
   };
 
+  const cartShownHandler = () => {
+    setIsCartOpen((prev) => !prev);
+  };
+
   const value = {
     isCartOpen,
-    setIsCartOpen,
+    cartShownHandler,
     addItemToCart,
-    removeItemToCart,
     clearItemFromCart,
     cartItems: cart.cartItems,
     cartCount,

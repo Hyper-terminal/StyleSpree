@@ -23,12 +23,14 @@ const ProductDetails = () => {
         </>
       )}
 
-      <button
-        onClick={() => navigate("/")}
-        style={{ padding: "10px 16px", border: "1.5px solid #ff3e6c" }}
-      >
-        Go back to main page
-      </button>
+      {!product && (
+        <button
+          onClick={() => navigate("/")}
+          style={{ padding: "10px 16px", border: "1.5px solid #ff3e6c" }}
+        >
+          Go back to main page
+        </button>
+      )}
     </div>
   );
 };

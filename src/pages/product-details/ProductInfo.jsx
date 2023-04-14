@@ -1,12 +1,24 @@
-import classes from "./info.module.css";
+import { useContext, useState } from "react";
+import { AiOutlineHeart, AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+import { BiShoppingBag } from "react-icons/bi";
 import HorizontalLine from "../../components/UI/HorizontalLine";
 import Ratings from "../../components/UI/Ratings";
-import { BiShoppingBag } from "react-icons/bi";
-import { AiOutlineHeart, AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
-import { useContext } from "react";
 import { CartContext } from "../../context/cart/cart-context";
+import classes from "./info.module.css";
+
 const ProductInfo = ({ product }) => {
+  const [quantity, setQuantity] = useState(1);
+
   const { addItemToCart } = useContext(CartContext);
+
+  const decreaseQuantity = () => {
+    if (quantity < 2) return;
+    setQuantity((prev) => prev - 1);
+  };
+
+  const increaseQuantity = () => {
+    setQuantity((prev) => prev + 1);
+  };
 
   return (
     <div className={classes.productInfo}>
@@ -52,17 +64,27 @@ const ProductInfo = ({ product }) => {
         <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
           <AiOutlineMinus
             size={30}
-            style={{ border: "1px solid #bfc0c6", borderRadius: "6px" }}
+            onClick={decreaseQuantity}
+            style={{
+              border: "1px solid #bfc0c6",
+              borderRadius: "6px",
+              cursor: "pointer",
+            }}
           />
-          <div className={classes.quantity}>01</div>
+          <div className={classes.quantity}>{quantity}</div>
           <AiOutlinePlus
+            onClick={increaseQuantity}
             size={30}
-            style={{ border: "1px solid #bfc0c6", borderRadius: "6px" }}
+            style={{
+              border: "1px solid #bfc0c6",
+              borderRadius: "6px",
+              cursor: "pointer",
+            }}
           />
         </div>
         <div className={classes.actions}>
           <div
-            onClick={() => addItemToCart(product)}
+            onClick={() => addItemToCart({ ...product, quantity: quantity })}
             className={classes.addToBag}
           >
             <BiShoppingBag size={30} /> <span>ADD TO BAG </span>

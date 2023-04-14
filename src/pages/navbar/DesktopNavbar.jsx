@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BiShoppingBag } from "react-icons/bi";
 import { CgProfile } from "react-icons/cg";
+import { useNavigate } from "react-router-dom";
 import Searchbar from "../../components/search-bar/Searchbar";
 import { navbar_links } from "../../constants/navbar-links";
+import { CartContext } from "../../context/cart/cart-context";
 import classes from "./desktop-navbar.module.css";
-import { useNavigate } from "react-router-dom";
 
 const DesktopNavbar = () => {
+  const { cartShownHandler } = useContext(CartContext);
   const navigate = useNavigate();
   return (
     <header className={classes.container}>
@@ -36,7 +38,10 @@ const DesktopNavbar = () => {
           <span style={{ display: "block", fontSize: "14px" }}>Wishlist</span>
         </div>
 
-        <div style={{ textAlign: "center" }}>
+        <div
+          onClick={cartShownHandler}
+          style={{ textAlign: "center", cursor: "pointer" }}
+        >
           <BiShoppingBag size={20} />
           <span style={{ display: "block", fontSize: "14px" }}>Bag</span>
         </div>

@@ -9,14 +9,16 @@ import { IoFilterSharp } from "react-icons/io5";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useNavigate } from "react-router-dom";
 import { navbar_links } from "../../constants/navbar-links";
+import { CartContext } from "../../context/cart/cart-context";
 import { ProductContext } from "../../context/products/product-context";
 import classes from "./mobile-navbar.module.css";
 
 const MobileNavbar = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-  const navigate = useNavigate();
   const { setSearchQuery, searchQuery } = useContext(ProductContext);
+  const { cartShownHandler } = useContext(CartContext);
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const { value } = event.target;
@@ -52,7 +54,7 @@ const MobileNavbar = (props) => {
               <div className={classes.wishlist}>
                 <AiOutlineHeart /> Wishlist
               </div>
-              <div className={classes.addToBag}>
+              <div onClick={cartShownHandler} className={classes.addToBag}>
                 <BiShoppingBag />
                 Bag
               </div>
