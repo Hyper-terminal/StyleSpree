@@ -1,9 +1,4 @@
-import React, {
-  createContext,
-  useCallback,
-  useMemo,
-  useReducer
-} from "react";
+import React, { createContext, useCallback, useMemo, useReducer } from "react";
 import productReducer from "./product-reducer";
 import { filterProducts, sortProducts } from "./product.utils";
 
@@ -24,6 +19,7 @@ export const ProductProvider = ({ children }) => {
   const [state, dispatch] = useReducer(productReducer, initialState);
   const { products, filters, sorting, searchQuery } = state;
 
+  let filteredProducts = [];
   const setProducts = useCallback(
     (products) => dispatch({ type: "SET_PRODUCTS", products }),
     []
@@ -41,14 +37,21 @@ export const ProductProvider = ({ children }) => {
     dispatch({ type: "SEARCH_PRODUCTS", query });
   }, []);
 
-  const filteredProducts = useMemo(() => {
+  filteredProducts = useMemo(() => {
     // filter
-    const filteredProducts = filterProducts(products, filters);
-    //sort
-    sortProducts(filteredProducts, sorting);
+    let newProducts = filterProducts(products, filters);
+    // sort
+    sortProducts(newProducts, sorting);
+    // search
+    newProducts = newProducts.filter((product) =>
+      product.brand
+        .toLowerCase()
+        .trim()
+        .includes(searchQuery.toLowerCase().trim())
+    );
     // return
-    return filteredProducts;
-  }, [filters, products, sorting]);
+    return newProducts;
+  }, [filters, products, sorting, searchQuery]);
 
   return (
     <ProductContext.Provider
