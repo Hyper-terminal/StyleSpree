@@ -16,19 +16,29 @@ const productReducer = (state, action) => {
     for (const key in action.filter) {
       updatedFilters[key] = action.filter[key];
     }
+
     return { ...state, filters: { ...updatedFilters } };
   }
 
   if (type === "SORT_PRODUCTS") {
     const { sorting_method } = action;
     const [property, method] = sorting_method.split("-");
+
+    if (!method || !property) {
+      return { ...state, sorting: [] };
+    }
     const updatedSorting = [...state.sorting];
     updatedSorting[0] = { property, method };
-    
+
     return { ...state, sorting: updatedSorting };
   }
 
-  return { ...state, products: sortedArr };
+  if (type === "SEARCH_PRODUCTS") {
+    const { query } = action;
+    return { ...state, searchQuery: query };
+  }
+
+  return state;
 };
 
 export default productReducer;

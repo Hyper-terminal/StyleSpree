@@ -1,8 +1,7 @@
 .container {
-  padding: 83px;
   padding-top: 150px;
   display: grid;
-  grid-template-columns: auto 30%;
+  grid-template-columns: auto 40%;
   column-gap: 10px;
   justify-content: center;
   max-width: 100vw;

@@ -1,11 +1,11 @@
-import React, { createContext, useCallback, useMemo, useReducer } from "react";
+import React, {
+  createContext,
+  useCallback,
+  useMemo,
+  useReducer
+} from "react";
 import productReducer from "./product-reducer";
-import {
-  filterProductsByBrands,
-  filterProductsByColors,
-  filterProductsByPrice,
-  sortProducts,
-} from "./product.utils";
+import { filterProducts, sortProducts } from "./product.utils";
 
 export const ProductContext = createContext();
 
@@ -17,11 +17,12 @@ const initialState = {
     brand: [],
   },
   sorting: [],
+  searchQuery: "",
 };
 
 export const ProductProvider = ({ children }) => {
   const [state, dispatch] = useReducer(productReducer, initialState);
-  const { products, filters, sorting } = state;
+  const { products, filters, sorting, searchQuery } = state;
 
   const setProducts = useCallback(
     (products) => dispatch({ type: "SET_PRODUCTS", products }),
@@ -36,21 +37,29 @@ export const ProductProvider = ({ children }) => {
     dispatch({ type: "SORT_PRODUCTS", sorting_method }), [];
   });
 
-  const filteredProducts = useMemo(() => {
-    let filteredProducts = [...products];
-    // filter by price
-    filteredProducts = filterProductsByPrice(filteredProducts, filters.price);
-    filteredProducts = filterProductsByColors(filteredProducts, filters.color);
-    filteredProducts = filterProductsByBrands(filteredProducts, filters.brand);
+  const setSearchQuery = useCallback((query) => {
+    dispatch({ type: "SEARCH_PRODUCTS", query });
+  }, []);
 
-    // sorting
+  const filteredProducts = useMemo(() => {
+    // filter
+    const filteredProducts = filterProducts(products, filters);
+    //sort
     sortProducts(filteredProducts, sorting);
+    // return
     return filteredProducts;
-  }, [filters, filterProductsByPrice, sorting, products]);
+  }, [filters, products, sorting]);
 
   return (
     <ProductContext.Provider
-      value={{ ...state, setProducts, setFilter, filteredProducts, setSorting }}
+      value={{
+        ...state,
+        setProducts,
+        setFilter,
+        filteredProducts,
+        setSorting,
+        setSearchQuery,
+      }}
     >
       {children}
     </ProductContext.Provider>

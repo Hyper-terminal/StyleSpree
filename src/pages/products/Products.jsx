@@ -12,6 +12,7 @@ import {
 const Products = () => {
   const { filteredProducts, setSorting, setProducts } =
     useContext(ProductContext);
+  console.log(filteredProducts);
 
   const params = useParams();
 
@@ -43,9 +44,10 @@ const Products = () => {
         </select>
         <div className={classes.gridContainer}>
           {filteredProducts.length === 0 && <h3>No Products !</h3>}
-          {filteredProducts?.map((product) => (
-            <ProductCard product={product} key={product.productId} />
-          ))}
+          {filteredProducts &&
+            filteredProducts.map((product) => (
+              <ProductCard product={product} key={product.productId} />
+            ))}
         </div>
       </main>
     </div>

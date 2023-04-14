@@ -1,36 +1,6 @@
-export const filterProductsByPrice = (products, priceFilter) => {
-  if (priceFilter.length === 0) {
-    return products;
-  }
-
-  const { minPrice, maxPrice } = priceFilter[0];
-  return products.filter(
-    (product) => product.price >= minPrice && product.price <= maxPrice
-  );
-};
-
-export const filterProductsByColors = (products, colorFilter) => {
-  if (colorFilter.length === 0) return products;
-
-  return products.filter((product) =>
-    colorFilter.some(
-      (color) => color.toLowerCase() === product.primaryColour.toLowerCase()
-    )
-  );
-};
-
-export const filterProductsByBrands = (products, brandFilter) => {
-  if (brandFilter.length === 0) return products;
-
-  return products.filter((product) =>
-    brandFilter.some(
-      (brand) => brand.toLowerCase() === product.brand.toLowerCase()
-    )
-  );
-};
-
 export const sortProducts = (products, sorting) => {
-  if (sorting.length === 0) return products;
+  if (sorting.length === 0) return 0;
+
   const { method, property } = sorting[0];
 
   if (method === "decrease") {
@@ -38,4 +8,36 @@ export const sortProducts = (products, sorting) => {
   } else {
     products.sort((a, b) => a[property] - b[property]);
   }
+
+};
+
+export const filterProducts = (products, { price, brand, color }) => {
+  if (price.length === 0 && color.length === 0 && brand.length === 0) {
+    return products;
+  }
+  const brandSet = new Set(brand?.map((brand) => brand.toLowerCase()));
+  const colorSet = new Set(color?.map((color) => color.toLowerCase()));
+
+  const minPrice = price?.[0]?.minPrice;
+  const maxPrice = price?.[0]?.maxPrice;
+
+  return products.filter((product) => {
+    let passOrFail = false;
+    // color
+    if (colorSet.size > 0) {
+      passOrFail = colorSet.has(product.primaryColour.toLowerCase());
+    }
+
+    // brand
+    if (brandSet.size > 0) {
+      passOrFail = brandSet.has(product.brand.toLowerCase());
+    }
+
+    // price
+    if (minPrice && maxPrice) {
+      passOrFail = product.price >= minPrice && product.price <= maxPrice;
+    }
+
+    return passOrFail;
+  });
 };

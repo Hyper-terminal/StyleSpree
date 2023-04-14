@@ -1,5 +1,6 @@
 .productInfo {
   max-width: 100%;
+  width: 90%;
   overflow: hidden;
   padding: 1rem;
 }
@@ -39,14 +40,12 @@
   background-color: #ff3e6c;
   border: 1px solid #ff3e6c;
   color: #fff;
-  flex: 3;
   text-align: center;
-  width: 100%;
-  margin-right: 3%;
   align-items: center;
   justify-content: center;
   gap: 10px;
   transition: all 0.3s ease-in-out;
+  width: 200px;
 }
 
 .addToBag:hover {
@@ -62,12 +61,12 @@
   cursor: pointer;
   padding: 12px 15px;
   font-weight: 700;
-  flex: 2;
   border: 1px solid #d4d5d9;
   background-color: #fff;
   letter-spacing: 0.4px;
   color: #282c3f;
   transition: all 0.3s ease-in-out;
+  width: 200px;
 }
 
 .wishList:hover {
@@ -102,4 +101,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.actions {
+  display: flex;
+  margin-top: 20px;
+  flex-wrap: wrap;
+  gap: 10px;
 }

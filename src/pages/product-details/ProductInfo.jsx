@@ -4,7 +4,7 @@ import Ratings from "../../components/UI/Ratings";
 import { BiShoppingBag } from "react-icons/bi";
 import { AiOutlineHeart, AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 
-const ProductInfo = ({product}) => {
+const ProductInfo = ({ product }) => {
   return (
     <div className={classes.productInfo}>
       <h1 className={classes.brand}>{product?.brand}</h1>
@@ -57,7 +57,7 @@ const ProductInfo = ({product}) => {
             style={{ border: "1px solid #bfc0c6", borderRadius: "6px" }}
           />
         </div>
-        <div style={{ display: "flex", marginTop: "20px" }}>
+        <div className={classes.actions}>
           <div className={classes.addToBag}>
             <BiShoppingBag size={30} /> <span>ADD TO BAG </span>
           </div>
