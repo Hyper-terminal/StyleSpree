@@ -3,8 +3,11 @@ import HorizontalLine from "../../components/UI/HorizontalLine";
 import Ratings from "../../components/UI/Ratings";
 import { BiShoppingBag } from "react-icons/bi";
 import { AiOutlineHeart, AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
-
+import { useContext } from "react";
+import { CartContext } from "../../context/cart/cart-context";
 const ProductInfo = ({ product }) => {
+  const { addItemToCart } = useContext(CartContext);
+
   return (
     <div className={classes.productInfo}>
       <h1 className={classes.brand}>{product?.brand}</h1>
@@ -58,7 +61,10 @@ const ProductInfo = ({ product }) => {
           />
         </div>
         <div className={classes.actions}>
-          <div className={classes.addToBag}>
+          <div
+            onClick={() => addItemToCart(product)}
+            className={classes.addToBag}
+          >
             <BiShoppingBag size={30} /> <span>ADD TO BAG </span>
           </div>
           <div className={classes.wishList}>

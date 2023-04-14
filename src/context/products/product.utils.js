@@ -1,14 +1,11 @@
 export const sortProducts = (products, sorting) => {
-  if (sorting.length === 0) return 0;
-
+  if (!sorting?.length) return products;
   const { method, property } = sorting[0];
-
   if (method === "decrease") {
     products.sort((a, b) => b[property] - a[property]);
   } else {
     products.sort((a, b) => a[property] - b[property]);
   }
-
 };
 
 export const filterProducts = (products, { price, brand, color }) => {

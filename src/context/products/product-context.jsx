@@ -40,8 +40,7 @@ export const ProductProvider = ({ children }) => {
   filteredProducts = useMemo(() => {
     // filter
     let newProducts = filterProducts(products, filters);
-    // sort
-    sortProducts(newProducts, sorting);
+
     // search
     newProducts = newProducts.filter((product) =>
       product.brand
@@ -49,6 +48,10 @@ export const ProductProvider = ({ children }) => {
         .trim()
         .includes(searchQuery.toLowerCase().trim())
     );
+
+    // sort
+    sortProducts(newProducts, sorting);
+
     // return
     return newProducts;
   }, [filters, products, sorting, searchQuery]);

@@ -12,7 +12,6 @@ import {
 const Products = () => {
   const { filteredProducts, setSorting, setProducts } =
     useContext(ProductContext);
-  console.log(filteredProducts);
 
   const params = useParams();
 
@@ -32,11 +31,7 @@ const Products = () => {
     <div className={classes.productsPage}>
       <Sidebar />
       <main className={classes.main}>
-        <select
-          className={classes.sorting}
-          defaultValue="Sort by: Recommended"
-          onChange={handleSorting}
-        >
+        <select className={classes.sorting} onChange={handleSorting}>
           <option value="">Recommended</option>
           <option value="rating-decrease">Popularity</option>
           <option value="price-decrease">Price: High to Low</option>

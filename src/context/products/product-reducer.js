@@ -22,11 +22,12 @@ const productReducer = (state, action) => {
 
   if (type === "SORT_PRODUCTS") {
     const { sorting_method } = action;
-    const [property, method] = sorting_method.split("-");
-
-    if (!method || !property) {
+    
+    if (!sorting_method) {
       return { ...state, sorting: [] };
     }
+    const [property, method] = sorting_method.split("-");
+
     const updatedSorting = [...state.sorting];
     updatedSorting[0] = { property, method };
 

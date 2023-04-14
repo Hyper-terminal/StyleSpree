@@ -14,6 +14,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  cursor: pointer;
 }
 
 .sidebar {
@@ -25,8 +26,7 @@
   width: 50%;
   color: #333;
   box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
-  overflow-x: hidden;
-  overflow-y: scroll;
+  overflow: hidden;
   animation: animate-in 0.3s linear;
   background: #ece9e6; /* fallback for old browsers */
   background: linear-gradient(to left, #ffffff, #ece9e6);
@@ -52,10 +52,61 @@
 .link {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding-left: 30px;
+  gap: 13px;
   margin-top: 50%;
   margin-bottom: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.link div {
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 1rem;
+  border: 6px solid #e95175;
+  border-radius: 6px;
+  width: 100px;
+  text-align: center;
+  background-color: #fff;
+  color: #333;
+}
+
+.link div:hover {
+  border: 1px solid #ff3e6c;
+  background-color: #ff3e6b41;
+}
+
+.wishlist {
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+  gap: 3px;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 10px;
+  cursor: pointer;
+  padding: 12px 15px;
+  border: 1px solid #d4d5d9 !important;
+  letter-spacing: 0.4px;
+  margin-top: 50px;
+}
+
+.addToBag {
+  display: flex;
+  border-radius: 6px;
+  padding: 12px 15px;
+  min-width: 108px;
+  font-weight: 700;
+  cursor: pointer;
+  background-color: #ff3e6c !important;
+  border: 1px solid #ff3e6c;
+  color: #fff !important;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: none !important;
 }
 
 .search {

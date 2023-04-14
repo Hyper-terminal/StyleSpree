@@ -10,7 +10,7 @@ const ImageInfo = ({ product }) => {
     <div className={classes.container}>
       {!isMobile &&
         images.map(
-          (item) => item.src && <img src={item.src} alt={item.view} />
+          (item) => item.src && <img key={item.view} src={item.src} alt={item.view} />
         )}
       {isMobile && <img src={images[0].src} alt={images[0].view} />}
     </div>

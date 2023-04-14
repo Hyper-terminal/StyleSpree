@@ -20,21 +20,23 @@ export const CartProvider = ({ children }) => {
     cartItems: [],
   });
 
-  useEffect(() => {
-    const newCartCount = cart.cartItems.reduce(
-      (total, cartItem) => total + cartItem.quantity,
-      0
-    );
-    setCartCount(newCartCount);
-  }, [cart]);
+  // useEffect(() => {
+  //   if (cart?.cartItems?.length > 0) {
+  //     const newCartCount = cart.cartItems.reduce(
+  //       (total, cartItem) => total + cartItem.quantity,
+  //       0
+  //     );
+  //     setCartCount(newCartCount);
+  //   }
+  // }, [cart]);
 
-  useEffect(() => {
-    const newCartTotal = cart.cartItems.reduce(
-      (total, cartItem) => total + cartItem.quantity * cartItem.price,
-      0
-    );
-    setCartTotal(newCartTotal);
-  }, [cart]);
+  // useEffect(() => {
+  //   const newCartTotal = cart.cartItems.reduce(
+  //     (total, cartItem) => total + cartItem.quantity * cartItem.price,
+  //     0
+  //   );
+  //   setCartTotal(newCartTotal);
+  // }, [cart]);
 
   const addItemToCart = (productToAdd) => {
     dispatch({ type: "ADD_CART_ITEM", productToAdd });

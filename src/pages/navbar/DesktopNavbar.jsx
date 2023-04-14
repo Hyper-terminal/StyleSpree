@@ -12,7 +12,9 @@ const DesktopNavbar = () => {
   return (
     <header className={classes.container}>
       <div className={classes.left_container}>
-        <h2>StyleSpree</h2>
+        <h2 style={{ cursor: "pointer" }} onClick={() => navigate("/")}>
+          StyleSpree
+        </h2>
         <nav className={classes.link}>
           {navbar_links.map((item) => (
             <div key={item} onClick={() => navigate("/products/" + item)}>
