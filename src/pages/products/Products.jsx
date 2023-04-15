@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { ProductCard, Sidebar } from "../../components";
+import DropDown from "../../components/dropdown/DropDown";
 import {
   childProducts,
   menProducts,
@@ -30,12 +31,7 @@ const Products = () => {
     <div className={classes.productsPage}>
       <Sidebar />
       <main className={classes.main}>
-        <select className={classes.sorting} onChange={handleSorting}>
-          <option value="">Recommended</option>
-          <option value="rating-decrease">Popularity</option>
-          <option value="price-decrease">Price: High to Low</option>
-          <option value="price-increase">Price: Low to High</option>
-        </select>
+        <DropDown style={{ marginLeft: "calc(100vw - 550px)" }} />
         <div className={classes.gridContainer}>
           {filteredProducts.length === 0 && <h3>No Products !</h3>}
           {filteredProducts &&
