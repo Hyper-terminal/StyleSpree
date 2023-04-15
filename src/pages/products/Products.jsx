@@ -1,20 +1,19 @@
 import { useContext, useEffect } from "react";
-import { ProductCard, Sidebar } from "../../components";
-import { ProductContext } from "../../context/products/product-context";
-import classes from "./products.module.css";
 import { useParams } from "react-router-dom";
+import { ProductCard, Sidebar } from "../../components";
 import {
-  menProducts,
   childProducts,
+  menProducts,
   womenProducts,
 } from "../../constants/products/";
+import { ProductContext } from "../../context/products/product-context";
+import classes from "./products.module.css";
 
 const Products = () => {
   const { filteredProducts, setSorting, setProducts } =
     useContext(ProductContext);
 
   const params = useParams();
-
   useEffect(() => {
     if (params.category === "men") setProducts(menProducts);
     else if (params.category === "women") setProducts(womenProducts);

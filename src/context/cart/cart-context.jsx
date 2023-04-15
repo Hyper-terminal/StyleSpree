@@ -14,7 +14,9 @@ export const CartProvider = ({ children }) => {
   const [cartTotal, setCartTotal] = useState(0);
   const [cartCount, setCartCount] = useState(0);
   const [cart, dispatch] = useReducer(cartReducer, {
-    cartItems: [],
+    cartItems: localStorage.getItem("cartItems")
+      ? JSON.parse(localStorage.getItem('cartItems'))
+      : [],
   });
 
   useEffect(() => {

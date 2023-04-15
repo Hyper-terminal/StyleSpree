@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import classes from "./product-card.module.css";
 import { AiOutlineHeart } from "react-icons/ai";
+import Ratings from "../UI/Ratings";
 
 const ProductCard = ({ product }) => {
   const brand_len = product.brand.length;
@@ -16,6 +17,7 @@ const ProductCard = ({ product }) => {
           src={product.searchImage}
           alt={product.productName}
         />
+        <Ratings rating={product.rating} ratingCount={product.ratingCount} style={{ position: "absolute", bottom: "-11px", opacity: '0.9' }} />
         <div className={classes.actions}>
           <button className={classes.wishlist}>
             <AiOutlineHeart />

@@ -13,6 +13,11 @@
   position: relative;
 }
 
+.ratings {
+  position: absolute;
+  top: 0;
+}
+
 .productMetaInfo {
   margin-top: 12px;
 }

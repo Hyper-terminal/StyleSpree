@@ -8,8 +8,13 @@ import classes from "./info.module.css";
 
 const ProductInfo = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
+  const [selectedSize, setSelectedSize] = useState("");
 
   const { addItemToCart } = useContext(CartContext);
+
+  const sizeHandler = (size) => {
+    setSelectedSize(size);
+  };
 
   const decreaseQuantity = () => {
     if (quantity < 2) return;
@@ -31,7 +36,7 @@ const ProductInfo = ({ product }) => {
       </h1>
       <HorizontalLine />
       <div style={{ marginTop: "20px" }} />
-      <Ratings />
+      <Ratings rating={product.rating} ratingCount={product.ratingCount} />
       <p className={classes.price}>Rs. {product.price}</p>
       <p style={{ fontSize: "14px", color: "#03a685", fontWeight: "700" }}>
         inclusive of all taxes
@@ -51,9 +56,17 @@ const ProductInfo = ({ product }) => {
 
         {/* circles */}
         <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
-          {product.sizes.split(",").map((size) => (
-            <div className={classes.sizes} key={size}>
-              {size}
+          {product.sizes.split(",").map((item) => (
+            <div
+              onClick={() => sizeHandler(item)}
+              style={{
+                border:
+                  selectedSize === item ? "2px solid #03a685" : "1px solid #bfc0c6",
+              }}
+              className={classes.sizes}
+              key={item}
+            >
+              {item}
             </div>
           ))}
         </div>
@@ -84,7 +97,9 @@ const ProductInfo = ({ product }) => {
         </div>
         <div className={classes.actions}>
           <div
-            onClick={() => addItemToCart({ ...product, quantity: quantity })}
+            onClick={() =>
+              addItemToCart({ ...product, quantity: quantity, selectedSize })
+            }
             className={classes.addToBag}
           >
             <BiShoppingBag size={30} /> <span>ADD TO BAG </span>

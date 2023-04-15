@@ -19,7 +19,8 @@ const cartReducer = (state, action) => {
     } else {
       updatedCartItems.push(productToAdd);
     }
-
+    // localStorage
+    localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
     return { cartItems: updatedCartItems };
   }
 
@@ -28,6 +29,11 @@ const cartReducer = (state, action) => {
     const updatedCartItems = state.cartItems.filter(
       (cartItem) => cartItem.productId !== cartItemToClear.productId
     );
+
+    //localStorage
+    localStorage.clear();
+    localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
+
     return { cartItems: updatedCartItems };
   }
 

@@ -6,10 +6,10 @@ import ProductInfo from "./ProductInfo";
 import ImageInfo from "./ImageInfo";
 
 const ProductDetails = () => {
+  const { products } = useContext(ProductContext);
   const param = useParams();
   const navigate = useNavigate();
   const { productID } = param;
-  const { products } = useContext(ProductContext);
   const product = products.find(
     (element) => Number(element.productId) === Number(productID)
   );

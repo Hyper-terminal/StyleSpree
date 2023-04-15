@@ -44,7 +44,9 @@ const Cart = () => {
             src={item?.images[0]?.src}
             alt={item?.images[0]?.alt}
           />
-
+          <p style={{ fontSize: "24px", fontWeight: "800", color: "#03a685" }}>
+            {item.selectedSize}
+          </p>
           <p style={{ fontSize: "16px", fontWeight: "700" }}>
             x{item.quantity}
           </p>
