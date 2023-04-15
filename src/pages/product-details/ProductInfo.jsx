@@ -4,6 +4,7 @@ import { BiShoppingBag } from "react-icons/bi";
 import HorizontalLine from "../../components/UI/HorizontalLine";
 import Ratings from "../../components/UI/Ratings";
 import { CartContext } from "../../context/cart/cart-context";
+import { WishlistContext } from "../../context/wishlist/wishlist-context";
 import classes from "./info.module.css";
 
 const ProductInfo = ({ product }) => {
@@ -11,6 +12,7 @@ const ProductInfo = ({ product }) => {
   const [selectedSize, setSelectedSize] = useState("");
 
   const { addItemToCart } = useContext(CartContext);
+  const { addItemToWishlist } = useContext(WishlistContext);
 
   const sizeHandler = (size) => {
     setSelectedSize(size);
@@ -61,7 +63,9 @@ const ProductInfo = ({ product }) => {
               onClick={() => sizeHandler(item)}
               style={{
                 border:
-                  selectedSize === item ? "2px solid #03a685" : "1px solid #bfc0c6",
+                  selectedSize === item
+                    ? "2px solid #03a685"
+                    : "1px solid #bfc0c6",
               }}
               className={classes.sizes}
               key={item}
@@ -104,7 +108,10 @@ const ProductInfo = ({ product }) => {
           >
             <BiShoppingBag size={30} /> <span>ADD TO BAG </span>
           </div>
-          <div className={classes.wishList}>
+          <div
+            onClick={() => addItemToWishlist(product)}
+            className={classes.wishList}
+          >
             <AiOutlineHeart size={30} /> WISHLIST
           </div>
         </div>

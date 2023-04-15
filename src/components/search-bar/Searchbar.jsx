@@ -28,7 +28,7 @@ function Searchbar(props) {
       <input
         onChange={handleChange}
         value={searchQuery}
-        placeholder="Search for products"
+        placeholder="Search for products or brands..."
         type="search"
         className={classes.search}
         onFocus={handleFocus}

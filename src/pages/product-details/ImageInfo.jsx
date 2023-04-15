@@ -28,9 +28,8 @@ const ImageInfo = ({ product }) => {
         images.map(
           (item) =>
             item.src && (
-              <div className={classes.subcontainer}>
+              <div key={item.view} className={classes.subcontainer}>
                 <InnerImageZoom
-                  key={item.view}
                   src={item.src}
                   zoomSrc={item.src}
                   alt={item.view}
@@ -46,7 +45,6 @@ const ImageInfo = ({ product }) => {
               item.src && (
                 <SwiperSlide key={item.view} style={swiperSlideStyles}>
                   <InnerImageZoom
-                    key={item.view}
                     src={item.src}
                     zoomSrc={item.src}
                     alt={item.view}

@@ -90,6 +90,7 @@
   border: 1px solid #d4d5d9 !important;
   letter-spacing: 0.4px;
   margin-top: 50px;
+  cursor: pointer;
 }
 
 .addToBag {

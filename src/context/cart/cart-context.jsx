@@ -59,7 +59,6 @@ export const CartProvider = ({ children }) => {
 
   return (
     <CartContext.Provider value={value}>
-      {" "}
       <ToastContainer />
       {children}
     </CartContext.Provider>

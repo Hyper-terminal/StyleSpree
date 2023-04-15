@@ -6,10 +6,12 @@ import { useNavigate } from "react-router-dom";
 import Searchbar from "../../components/search-bar/Searchbar";
 import { navbar_links } from "../../constants/navbar-links";
 import { CartContext } from "../../context/cart/cart-context";
+import { WishlistContext } from "../../context/wishlist/wishlist-context";
 import classes from "./desktop-navbar.module.css";
 
 const DesktopNavbar = () => {
   const { cartShownHandler } = useContext(CartContext);
+  const { wishlistShownHandler } = useContext(WishlistContext);
   const navigate = useNavigate();
   return (
     <header className={classes.container}>
@@ -33,7 +35,7 @@ const DesktopNavbar = () => {
           <span style={{ display: "block", fontSize: "14px" }}>Profile</span>
         </div>
 
-        <div style={{ textAlign: "center" }}>
+        <div onClick={wishlistShownHandler} style={{ textAlign: "center", cursor: "pointer"  }}>
           <AiOutlineHeart size={20} />
           <span style={{ display: "block", fontSize: "14px" }}>Wishlist</span>
         </div>

@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { navbar_links } from "../../constants/navbar-links";
 import { CartContext } from "../../context/cart/cart-context";
 import { ProductContext } from "../../context/products/product-context";
+import { WishlistContext } from "../../context/wishlist/wishlist-context";
 import classes from "./mobile-navbar.module.css";
 
 const MobileNavbar = (props) => {
@@ -18,6 +19,7 @@ const MobileNavbar = (props) => {
   const [searchOpen, setSearchOpen] = useState(false);
   const { setSearchQuery, searchQuery } = useContext(ProductContext);
   const { cartShownHandler } = useContext(CartContext);
+  const { wishlistShownHandler } = useContext(WishlistContext);
   const navigate = useNavigate();
 
   const handleChange = (event) => {
@@ -51,7 +53,7 @@ const MobileNavbar = (props) => {
                   {item.toUpperCase()}
                 </div>
               ))}
-              <div className={classes.wishlist}>
+              <div onClick={wishlistShownHandler} className={classes.wishlist}>
                 <AiOutlineHeart /> Wishlist
               </div>
               <div onClick={cartShownHandler} className={classes.addToBag}>

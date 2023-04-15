@@ -42,11 +42,16 @@ export const ProductProvider = ({ children }) => {
     let newProducts = filterProducts(products, filters);
 
     // search
-    newProducts = newProducts.filter((product) =>
-      product.brand
-        .toLowerCase()
-        .trim()
-        .includes(searchQuery.toLowerCase().trim())
+    newProducts = newProducts.filter(
+      (product) =>
+        product.brand
+          .toLowerCase()
+          .trim()
+          .includes(searchQuery.toLowerCase().trim()) ||
+        product.productName
+          .toLowerCase()
+          .trim()
+          .includes(searchQuery.toLowerCase().trim())
     );
 
     // sort
