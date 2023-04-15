@@ -50,8 +50,6 @@ const ImageInfo = ({ product }) => {
                     src={item.src}
                     zoomSrc={item.src}
                     alt={item.view}
-                    zoomScale={1.1}
-                    fullscreenOnMobile
                   />
                 </SwiperSlide>
               )

@@ -1,4 +1,6 @@
 import { createContext, useState, useEffect, useReducer } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import cartReducer from "./cart-reducer";
 
 export const CartContext = createContext({
@@ -15,7 +17,7 @@ export const CartProvider = ({ children }) => {
   const [cartCount, setCartCount] = useState(0);
   const [cart, dispatch] = useReducer(cartReducer, {
     cartItems: localStorage.getItem("cartItems")
-      ? JSON.parse(localStorage.getItem('cartItems'))
+      ? JSON.parse(localStorage.getItem("cartItems"))
       : [],
   });
 
@@ -34,6 +36,7 @@ export const CartProvider = ({ children }) => {
 
   const addItemToCart = (productToAdd) => {
     dispatch({ type: "ADD_CART_ITEM", productToAdd });
+    toast.success(`Item has been added to your cart!`);
   };
 
   const clearItemFromCart = (cartItemToClear) => {
@@ -54,5 +57,11 @@ export const CartProvider = ({ children }) => {
     cartTotal,
   };
 
-  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
+  return (
+    <CartContext.Provider value={value}>
+      {" "}
+      <ToastContainer />
+      {children}
+    </CartContext.Provider>
+  );
 };

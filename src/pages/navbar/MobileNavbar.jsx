@@ -28,9 +28,9 @@ const MobileNavbar = (props) => {
   return (
     <>
       <header className={classes.container}>
-        <div onClick={() => navigate("/")} className={classes.logo}>
+        <div className={classes.logo}>
           <RxHamburgerMenu onClick={() => setIsOpen(true)} />
-          StyleSpree
+          <span onClick={() => navigate("/")}>StyleSpree</span>
         </div>
 
         {isOpen && (
