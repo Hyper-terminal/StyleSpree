@@ -14,6 +14,8 @@ const App = () => {
             <Route path=":category" element={<Products />} />
             <Route path="details/:productID" element={<ProductDetails />} />
           </Route>
+
+          <Route path="*" element={<h1>Page not found!</h1>} />
         </Routes>
       </Layout>
     </>
